@@ -1,0 +1,21 @@
+<input [(ngModel)]='searchText' >
+<table class="table table-bordered" >
+  <tr>
+      <th>sl.no</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Action</th>
+  </tr>
+<tr *ngFor='let data of fdata|search:searchText,let i=index'>
+    <td>{{i+1}}</td>
+<td ><input [(ngModel)]='data.fname' #fname='ngModel'  required >
+    <div *ngIf='fname.invalid && (fname.touched ||submitted)'  class="text-danger">
+    <p *ngIf='fname.errors.required'>firstname is required</p>
+</div></td>
+<td ><input [(ngModel)]='data.lname' #lname='ngModel' required>
+  <div *ngIf='lname.invalid && (lname.touched || submitted)' class="text-danger">
+  <p *ngIf='lname.errors.required'>lastname is required</p>
+</div></td>
+<td><button class='btn btn-info' (click)='up(data)'>save</button></td>
+</tr>
+</table>
